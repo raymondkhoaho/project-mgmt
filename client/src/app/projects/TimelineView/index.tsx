@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/app/redux";
 import { useGetTasksQuery } from "@/state/api";
 import { DisplayOption, ViewMode } from "gantt-task-react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 type Props = {
   id: string;
@@ -22,6 +22,32 @@ const Timeline = ({ id, setIsModalNewTaskOpen }: Props) => {
     viewMode: ViewMode.Month,
     locale: "en-US",
   });
+
+  const ganttTasks = useMemo(() => {
+    return (
+      tasks?.map((task) => ({
+        start: new Date(task.startDate as string),
+        end: new Date(task.dueDate as string),
+        name: task.title,
+        id: `Task-${task.id}`,
+        type: "task" as TaskTypeItems,
+        progress: task.points ? (task.points / 10) * 100 : 0,
+        isDisabled: false,
+      })) || []
+    );
+  }, [tasks]);
+
+  const handleViewModeChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setDisplayOptions((prev) => ({
+      ...prev,
+      viewMode: event.target.value as ViewMode,
+    }));
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>An error occurred while fetching tasks</div>;
 
   return <div>Timeline</div>;
 };
