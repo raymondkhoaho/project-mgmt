@@ -232,6 +232,16 @@ const Task = ({ task }: TaskProps) => {
                 className="h-8 w-8 rounded-full border-2 border-white object-cover dark:border-dark-secondary"
               />
             )}
+            {task.author && (
+              <Image
+                key={task.author.userId}
+                src={`/${task.author.profilePictureUrl!}`}
+                alt={task.author.username}
+                width={30}
+                height={30}
+                className="h-8 w-8 rounded-full border-2 border-white object-cover dark:border-dark-secondary"
+              />
+            )}
           </div>
         </div>
       </div>
