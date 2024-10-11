@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
-import ProjectHeader from '@/app/projects/ProjectHeader';
-import Board from '../BoardView';
+import React, { useState } from "react";
+import ProjectHeader from "@/app/projects/ProjectHeader";
+import Board from "../BoardView";
+import List from "../ListView";
 
 type Props = {
-    params: { id: string };
+  params: { id: string };
 };
 
 const Project = ({ params }: Props) => {
@@ -16,13 +17,15 @@ const Project = ({ params }: Props) => {
   return (
     <div>
       {/* MODAL NEW TASKS */}
-        <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
-        { activeTab === "Board" && (
-          <Board id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-        )}
-
+      <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
+      {activeTab === "Board" && (
+        <Board id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+      {activeTab === "List" && (
+        <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Project
+export default Project;
