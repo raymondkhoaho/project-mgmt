@@ -29,7 +29,7 @@ const getTasks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.json(tasks);
     }
     catch (error) {
-        res.status(500).json({ message: `Error creating tasks: ${error.message}` });
+        res.status(500).json({ message: `Error retrieving tasks: ${error.message}` });
     }
 });
 exports.getTasks = getTasks;

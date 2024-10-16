@@ -23,7 +23,7 @@ export const getTasks = async (
       });
       res.json(tasks);
     } catch (error: any) {
-      res.status(500).json({ message: `Error creating tasks: ${error.message}`});
+      res.status(500).json({ message: `Error retrieving tasks: ${error.message}`});
     }
 };
 
