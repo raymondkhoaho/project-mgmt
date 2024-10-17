@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import {
   DataGrid,
   GridColDef,
+  GridToolbarColumnsButton,
   GridToolbarContainer,
   GridToolbarExport,
   GridToolbarFilterButton,
@@ -16,6 +17,7 @@ import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
 const CustomToolbar = () => (
   <GridToolbarContainer className="toolbar flex gap-2">
     <GridToolbarFilterButton />
+    <GridToolbarColumnsButton />
     <GridToolbarExport />
   </GridToolbarContainer>
 );
