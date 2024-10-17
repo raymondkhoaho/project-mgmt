@@ -13,12 +13,19 @@ import {
 } from "@mui/x-data-grid";
 import Image from "next/image";
 import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
+import Box from "@mui/material/Box";
 
 const CustomToolbar = () => (
   <GridToolbarContainer className="toolbar flex gap-2">
     <GridToolbarFilterButton />
     <GridToolbarColumnsButton />
-    <GridToolbarExport />
+    <Box sx={{ flexGrow: 1 }} />
+    <GridToolbarExport
+      slotProps={{
+        tooltip: { title: "Export data" },
+        button: { variant: "outlined" },
+      }}
+    />
   </GridToolbarContainer>
 );
 
