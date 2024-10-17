@@ -12,15 +12,26 @@ export const getTeams = async (req: Request, res: Response): Promise<void> => {
         const productOwner = await prisma.user.findUnique({
           where: { userId: team.productOwnerUserId! },
           select: { username: true },
-        })
+        });
+
+        const projectManager = await prisma.user.findUnique({
+          where: { userId: team.projectManagerUserId! },
+          select: { username: true },
+        });
+
+        return {
+          ...team,
+          productOwnerUsername: productOwner?.username,
+          projectManagerUsername: projectManager?.username
+        }
       })
     )
 
-    res.json(teams);
+    res.json(teamsWithUsernames);
   } catch (error: any) {
     res
       .status(500)
-      .json({ message: `Error retrieving users: ${error.message}` });
+      .json({ message: `Error retrieving teams: ${error.message}` });
   }
 };
 

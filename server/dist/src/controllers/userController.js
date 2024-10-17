@@ -19,8 +19,7 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 team: true,
             }
         });
-        const usersWithTeamName = users.map(user => (Object.assign(Object.assign({}, user), { teamName: user.team ? user.team.teamName : null // Include team name or null if no team
-         })));
+        const usersWithTeamName = users.map(user => (Object.assign(Object.assign({}, user), { teamName: user.team ? user.team.teamName : null })));
         res.json(usersWithTeamName);
     }
     catch (error) {

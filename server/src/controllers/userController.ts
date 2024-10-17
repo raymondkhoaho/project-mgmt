@@ -13,7 +13,7 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
 
     const usersWithTeamName = users.map(user => ({
       ...user,
-      teamName: user.team ? user.team.teamName : null  // Include team name or null if no team
+      teamName: user.team ? user.team.teamName : null  
     }));
 
     res.json(usersWithTeamName);
