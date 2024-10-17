@@ -32,6 +32,7 @@ const CustomToolbar = () => (
 const columns: GridColDef[] = [
   { field: "userId", headerName: "ID", width: 100 },
   { field: "username", headerName: "Username", width: 150 },
+  { field: "teamName", headerName: "Team Name", width: 150 },
   {
     field: "profilePictureUrl",
     headerName: "Profile Picture",

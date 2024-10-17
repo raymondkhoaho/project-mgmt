@@ -5,8 +5,18 @@ const prisma = new PrismaClient();
 
 export const getUsers = async (req: Request, res: Response): Promise<void> => {
   try {
-    const users = await prisma.user.findMany();
-    res.json(users);
+    const users = await prisma.user.findMany({
+      include: {
+        team: true,
+      }
+    });
+
+    const usersWithTeamName = users.map(user => ({
+      ...user,
+      teamName: user.team ? user.team.teamName : null  // Include team name or null if no team
+    }));
+
+    res.json(usersWithTeamName);
   } catch (error: any) {
     res
       .status(500)
