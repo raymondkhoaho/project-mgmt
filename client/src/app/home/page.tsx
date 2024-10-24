@@ -9,6 +9,14 @@ import {
 } from "@/state/api";
 import React from "react";
 import { useAppSelector } from "../redux";
+import { GridColDef } from "@mui/x-data-grid";
+
+const taskColumns: GridColDef[] = [
+  { field: "title", headerName: "Title", width: 200 },
+  { field: "status", headerName: "Status", width: 150 },
+  { field: "priority", headerName: "Priority", width: 150 },
+  { field: "dueDate", headerName: "Due Date", width: 150 },
+];
 
 const HomePage = () => {
   const {
