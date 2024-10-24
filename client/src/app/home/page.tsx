@@ -48,6 +48,11 @@ const HomePage = () => {
     {},
   );
 
+  const projectStatus = Object.keys(statusCount).map((key) => ({
+    name: key,
+    count: statusCount[key],
+  }));
+
   return <div>HomePage</div>;
 };
 
