@@ -5,6 +5,7 @@ import {
   useGetTasksQuery,
   Priority,
   Task,
+  Project,
 } from "@/state/api";
 import React from "react";
 import { useAppSelector } from "../redux";
@@ -37,6 +38,15 @@ const HomePage = () => {
     name: key,
     count: priorityCount[key],
   }));
+
+  const statusCount = projects.reduce(
+    (acc: Record<string, number>, project: Project) => {
+      const status = project.endDate ? "Completed" : "Active";
+      acc[status] = (acc[status] || 0) + 1;
+      return acc;
+    },
+    {},
+  );
 
   return <div>HomePage</div>;
 };
