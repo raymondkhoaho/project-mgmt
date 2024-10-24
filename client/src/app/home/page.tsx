@@ -18,6 +18,8 @@ const taskColumns: GridColDef[] = [
   { field: "dueDate", headerName: "Due Date", width: 150 },
 ];
 
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+
 const HomePage = () => {
   const {
     data: tasks,
@@ -60,6 +62,20 @@ const HomePage = () => {
     name: key,
     count: statusCount[key],
   }));
+
+  const chartColors = isDarkMode
+    ? {
+        bar: "#8884d8",
+        barGrid: "#303030",
+        pieFill: "#4A90E2",
+        text: "#FFFFFF",
+      }
+    : {
+        bar: "#8884d8",
+        barGrid: "#E0E0E0",
+        pieFill: "#82ca9d",
+        text: "#000000",
+      };
 
   return <div>HomePage</div>;
 };
