@@ -33,6 +33,11 @@ const HomePage = () => {
     {},
   );
 
+  const taskDistribution = Object.keys(priorityCount).map((key) => ({
+    name: key,
+    count: priorityCount[key],
+  }));
+
   return <div>HomePage</div>;
 };
 
