@@ -1,13 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
-import { Priority, Task, useGetTasksByUserQuery } from "@/state/api";
 import { useAppSelector } from "@/app/redux";
-import ModalNewTask from "@/components/ModalNewTask";
 import Header from "@/components/Header";
-import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import ModalNewTask from "@/components/ModalNewTask";
 import TaskCard from "@/components/TaskCard";
+import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
+import {
+  Priority,
+  Task,
+  useGetAuthUserQuery,
+  useGetTasksByUserQuery,
+} from "@/state/api";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import React, { useState } from "react";
 
 type Props = {
   priority: Priority;
@@ -72,7 +77,8 @@ const ReusablePriorityPage = ({ priority }: Props) => {
   const [view, setView] = useState("list");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
-  const userId = 1;
+  const { data: currentUser } = useGetAuthUserQuery({});
+  const userId = currentUser?.userDetails?.userId ?? null;
   const {
     data: tasks,
     isLoading,
