@@ -1,5 +1,5 @@
 import React from "react";
-import { Authenticator } from "@aws-amplify/ui-react";
+import { Authenticator, View, Heading, Text } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 
@@ -22,7 +22,7 @@ const formFields = {
       inputProps: { required: true },
     },
     email: {
-      order: 1,
+      order: 2,
       placeholder: "Enter your email address",
       label: "Email",
       inputProps: { type: "email", required: true },
@@ -42,10 +42,23 @@ const formFields = {
   },
 };
 
+const components = {
+  SignIn: {
+    Footer() {
+      return (
+        <View textAlign="center">
+          <Text color="gray">Guest Username: dummyuser</Text>
+          <Text color="gray">Guest Password: password</Text>
+        </View>
+      );
+    },
+  },
+};
+
 const AuthProvider = ({ children }: any) => {
   return (
     <div>
-      <Authenticator formFields={formFields}>
+      <Authenticator formFields={formFields} components={components}>
         {({ user }: any) =>
           user ? (
             <div>{children}</div>
